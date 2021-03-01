@@ -1,21 +1,22 @@
 @font-face {
-  font-family: 'Pixel', monospace;
-  src: url('./font/Pixel-LCD-7.woff') format('woff');
+  font-family: 'Pixel';
+  src: url('./font/Pixel LCD-7.ttf') format('ttf');
 }
 @font-face {
- font-family: 'Akaya Telivigala', cursive;
+ font-family: 'Akaya Telivigala';
   src: url('./font/AkayaTelivigala-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Indie Flower';
   src: url('./font/IndieFlower-Regular.ttf');
 }
 
 body {
   margin: 0;
-  font-family: 'Akaya Telivigala';
+  font-family: 'Indie Flower';
   background: url('./img/bg.png')no-repeat;
   background-size: cover;
+ 
 }
 
