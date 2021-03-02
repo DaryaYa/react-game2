@@ -9,9 +9,9 @@ export const StyledStartButton = styled.div`
   border-radius: 20px;
   border: none;
   color: #82abe2;
-  font-weight: bold;
   background-color: #9b35b970;
-  font-family: "Pixel";
+  font-family: "Indie Flower";
+  font-weight: bold;
   outline: none;
   cursor: pointer;
   text-align: center;
