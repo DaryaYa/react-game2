@@ -4,33 +4,47 @@ import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 import { Stage } from "./Stage";
 import { Display } from "./Display";
 import { StartButton } from "./StartButton";
-import { createStage } from "../gameHelpers";
+import { createStage, checkCollision } from "../gameHelpers";
 import { useStage } from '../hooks/useStage';
 import { usePlayer } from '../hooks/usePlayer';
+import { useInterval } from '../hooks/useInterval';
 
 export const Tetris = () => {
 
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
-  const [player, updatePlayerPos, resetPlayer ] = usePlayer();
-  const [stage, setStage] = useStage(player);
+  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
+  const [stage, setStage] = useStage(player, resetPlayer);
 
   console.log('re-render');
 
-  const movePlayer = dir => {
-    updatePlayerPos({ x: dir, y: 0 })
+  const movePlayer = (dirX, dirY) => {
+    if(!checkCollision(player, stage, { x: dirX*2, y: dirY*2 })) { //this is a predicted step
+      updatePlayerPos({ x: dirX, y: dirY })
+    }   
   }
 
   const startGame = () => {
     //reset everything
     setStage(createStage());
     resetPlayer();
-
+    setGameOver(false);
   }
 
   const drop = () => {
-    updatePlayerPos({ x:0, y:1, collided: false })
+    if (!checkCollision(player, stage, { x: 0, y: 1 })) { //check for the next step
+      updatePlayerPos({ x: 0, y: 0.5, collided: false });
+      console.log(player.pos.y)
+    }    else {
+      //GAME OVER
+      if (player.pos.y < 1) {
+        console.log("gAmOver")
+        setDropTime(null);
+        setGameOver(true);
+      }
+      updatePlayerPos({ x: 0, y: 0, collided: true })
+    }
   }
 
   const dropPlayer = () => {
@@ -40,14 +54,25 @@ export const Tetris = () => {
   const move = ({ keyCode }) => {
     if (!gameOver) {
       switch (keyCode) {
+        
         case 37:
-          movePlayer(-1);
+          movePlayer(-0.5, 0);
           break;
         case 39:
-          movePlayer(1);
+          movePlayer(0.5, 0);
+          break;
+        case 38:
+          movePlayer(0, -0.5);
+          console.log(player.pos.y)
           break;
         case 40:
           dropPlayer();
+          break;
+        case 87:
+          playerRotate(stage, 1); // w - rotate clockwise
+          break;
+        case 69:
+          playerRotate(stage, -1) // e - rotate ANTIclockwise  
           break;
         default:
           return;
