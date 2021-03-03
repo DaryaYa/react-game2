@@ -20,7 +20,7 @@ export const Tetris = () => {
   const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
 
   const movePlayer = (dirX, dirY) => {
-    if(!checkCollision(player, stage, { x: dirX*2, y: dirY*2 })) { //this is a predicted step
+    if(!checkCollision(player, stage, { x: dirX, y: dirY })) { //this is a predicted step
       updatePlayerPos({ x: dirX, y: dirY })
     }   
   }
@@ -44,7 +44,7 @@ export const Tetris = () => {
       setDropTime(1000 /  (level + 1) + 250)
     }
     if (!checkCollision(player, stage, { x: 0, y: 1 })) { //check for the next step
-      updatePlayerPos({ x: 0, y: 0.5, collided: false });
+      updatePlayerPos({ x: 0, y: 1, collided: false });
     }    else {
       //GAME OVER
       if (player.pos.y < 1) {
@@ -74,13 +74,13 @@ export const Tetris = () => {
       switch (keyCode) {
         
         case 37:
-          movePlayer(-0.5, 0);
+          movePlayer(-1, 0);
           break;
         case 39:
-          movePlayer(0.5, 0);
+          movePlayer(1, 0);
           break;
         case 38:
-          movePlayer(0, -0.5);
+          movePlayer(0, -1);
           break;
         case 40:
           dropPlayer();
