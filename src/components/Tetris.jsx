@@ -64,6 +64,10 @@ export const Tetris = () => {
     }
   }
 
+  const gamePause = () => {
+    alert('GAME PAUSED');
+  } 
+
   const dropPlayer = () => {
     setDropTime(null);
     drop();
@@ -90,6 +94,9 @@ export const Tetris = () => {
           break;
         case 69:
           playerRotate(stage, -1) // e - rotate ANTIclockwise  
+          break;
+        case 32:
+          gamePause();
           break;
         default:
           return;
@@ -122,7 +129,7 @@ export const Tetris = () => {
           )}
 
           <StartButton callback={startGame} />
-          <Display text={"← ↑ ↓ → , w, e - game controls"} />
+          <Display text={"← ↑ ↓ → , space, w, e - game controls"} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
