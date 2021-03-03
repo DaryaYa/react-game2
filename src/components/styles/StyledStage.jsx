@@ -11,6 +11,6 @@ export const StyledStaged = styled.div`
 		border: 2px solid #333;
 		width: 100%;
 		max-width: 35vw;
-		background-color: rgba(17, 17, 17, 0.6);
+		background-color: rgba(17, 17, 17, 0.1);
 	)
 `;

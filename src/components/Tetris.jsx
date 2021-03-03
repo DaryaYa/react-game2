@@ -102,7 +102,12 @@ export const Tetris = () => {
   }, dropTime);
 
   return (
-    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
+    <StyledTetrisWrapper
+      role="button"
+      tabIndex="0"
+      onKeyDown={(e) => move(e)}
+      onKeyUp={keyUp}
+    >
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
@@ -117,6 +122,7 @@ export const Tetris = () => {
           )}
 
           <StartButton callback={startGame} />
+          <Display text={"← ↑ ↓ → , w, e - game controls"} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
