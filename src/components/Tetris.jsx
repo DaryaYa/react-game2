@@ -9,7 +9,8 @@ import { useStage } from '../hooks/useStage';
 import { usePlayer } from '../hooks/usePlayer';
 import { useInterval } from '../hooks/useInterval';
 import { useGameStatus } from '../hooks/useGameStatus';
-
+import { Footer } from './Footer';
+ 
 export const Tetris = () => {
 
   const [dropTime, setDropTime] = useState(null);
@@ -131,7 +132,9 @@ export const Tetris = () => {
           <StartButton callback={startGame} />
           <Display text={"← ↑ ↓ → , space, w, e - game controls"} />
         </aside>
+        
       </StyledTetris>
+      <Footer />
     </StyledTetrisWrapper>
   );
 };
