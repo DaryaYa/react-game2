@@ -12,6 +12,7 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import { Footer } from './Footer';
 // import useSound from "use-sound";
 import { MusicButton } from './MusicButton';
+import { BGButton } from "./BGButton";
 
 export const Tetris = () => {
 
@@ -139,6 +140,7 @@ export const Tetris = () => {
       <StyledTetris >
         <Stage stage={stage} />
         <aside>
+          <BGButton />
           {gameOver ? (
             <Display gameOver={gameOver} text={"Game Over"} />
           ) : (
