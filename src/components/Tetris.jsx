@@ -9,6 +9,10 @@ import { useStage } from '../hooks/useStage';
 import { usePlayer } from '../hooks/usePlayer';
 import { useInterval } from '../hooks/useInterval';
 import { useGameStatus } from '../hooks/useGameStatus';
+import { Footer } from './Footer';
+// import useSound from "use-sound";
+import { MusicButton } from './MusicButton';
+import { BGButton } from "./BGButton";
 
 export const Tetris = () => {
 
@@ -73,6 +77,23 @@ export const Tetris = () => {
     drop();
   }
 
+  // const handleMouse = event => {
+    
+  //   const { clientX, clientY } = event;
+  //   console.log(clientX/100, clientY/100, player.pos.x, player.pos.y);
+
+  //   if(clientX/100 > player.pos.x) {
+  //    movePlayer(1, 0) }
+  //    if (clientX/100 <= player.pos.x) {
+  //      movePlayer(-1, 0)
+  //    }
+  //    if (clientY/100 > player.pos.y) {
+  //      movePlayer(0, 1)
+  //    } else {
+  //      movePlayer(0, -1)
+  //    }
+  //   }
+
   const move = ({ keyCode }) => {
     if (!gameOver) {
       switch (keyCode) {
@@ -114,14 +135,17 @@ export const Tetris = () => {
       tabIndex="0"
       onKeyDown={(e) => move(e)}
       onKeyUp={keyUp}
+      // onMouseMove={(e) => handleMouse(e)}
     >
-      <StyledTetris>
+      <StyledTetris >
         <Stage stage={stage} />
         <aside>
+          <BGButton />
           {gameOver ? (
             <Display gameOver={gameOver} text={"Game Over"} />
           ) : (
             <div>
+              <MusicButton />
               <Display text={`Score: ${score}`} />
               <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
@@ -132,6 +156,7 @@ export const Tetris = () => {
           <Display text={"← ↑ ↓ → , space, w, e - game controls"} />
         </aside>
       </StyledTetris>
+      <Footer />
     </StyledTetrisWrapper>
   );
 };
